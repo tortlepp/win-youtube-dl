@@ -31,6 +31,7 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -39,6 +40,7 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Monitor;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
@@ -64,7 +66,17 @@ public class WinYouTubeDownloader {
         
         createContent(shell);
         
+        shell.setMinimumSize(500, 100);
         shell.pack();
+        
+        // Center window on the screen
+        Monitor primary = display.getPrimaryMonitor();
+        Rectangle bounds = primary.getBounds();
+        Rectangle win = shell.getBounds();
+        int xpos = bounds.x + (bounds.width - win.width) / 2;
+        int ypos = bounds.y + (bounds.height - win.height) / 2;
+        shell.setLocation(xpos, ypos);
+        
         shell.open();
         while (!shell.isDisposed()) {
             if (!display.readAndDispatch())
