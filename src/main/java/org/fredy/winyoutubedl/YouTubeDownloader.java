@@ -58,7 +58,7 @@ public class YouTubeDownloader {
         sb.append("start cmd /c ");
         sb.append("youtube-dl.bat \"").append(directory).append("\"");
         sb.append(" \"").append(System.getProperty("user.dir")).append("\"");
-        sb.append(" \"--title\" \"--restrict-filenames\" ");
+        sb.append(" \"-o \"%(title)s-%(id)s.%(ext)s\"\" \"--restrict-filenames\" ");
         if (toMP3) {
             sb.append("\"--extract-audio\" \"--audio-format=mp3\" ");
         }
